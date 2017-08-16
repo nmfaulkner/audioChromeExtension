@@ -2,7 +2,7 @@
     "manifest_version": 2,
 
     "name": "Read to Me",
-    "description": "This extension lets you easily manage your personal finances",
+    "description": "This extension reads text that you highlight in your browser",
     "version": "0.2",
     "content_scripts": [ {
     "all_frames": true,
@@ -12,7 +12,7 @@
   } ],
 
     "browser_action": {
-        "default_icon": "smileyFace.png",
+        "default_icon": "sound.png",
         "default_popup": "popup.html",
         "default_title": "Read me Text"
     },

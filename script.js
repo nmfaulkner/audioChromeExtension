@@ -1,7 +1,6 @@
 
 (function() {
  const testClick = function() {
-  //  console.log("hello1");
     pasteSelection();
   };
 
@@ -15,9 +14,8 @@
             method: "getSelection"
           },
           function(response) {
-            console.log(response.data);
+            console.log("Response Data: " + response.data);
             let text = response.data;
-            // console.log(text);
             let msg = new SpeechSynthesisUtterance(text);
             window.speechSynthesis.speak(msg);
           });
