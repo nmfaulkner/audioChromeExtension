@@ -1,2 +1,2 @@
-# budgetChromeExtension
-A budget tracker chrome extension
+# audioChromeExtension
+This chrome extension reads highlighted text to you. Useful for emails, long articles etc.
