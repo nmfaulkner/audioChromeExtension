@@ -1,39 +1,32 @@
-console.log("Hello World!s");
-document.addEventListener('DOMContentLoaded', function() {
-    function getSelectedText(text) {
-        console.log(text);
-        var msg = new SpeechSynthesisUtterance(text);
-//        console.log("msg", msg);
-        window.speechSynthesis.speak(msg);
-    };
-    
-    console.log("dom ready");
 
-    
-    function pasteSelection() {                         
-        chrome.runtime.sendMessage("foo", function (response) {
-            console.log(response);
-            //getSelectedText(response);
-        });
-    };
-         
-           
-//        chrome.tabs.query(null, function(tab) {
-//        chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function (response) {
-//            console.log(response);
-//        console.log(response.data);
-////            getSelectedText(response.data);
-//            });
-//        });
-                       
+(function() {
+ const testClick = function() {
+  //  console.log("hello1");
+    pasteSelection();
+  };
 
-    
-    
-    var element = document.getElementById("Read");
-    element.addEventListener('click', function() {
-        console.log("Clicked");
-        pasteSelection();
-    });
-});
+ const pasteSelection = function() {
+    chrome.tabs.query({
+        active: true,
+        windowId: chrome.windows.WINDOW_ID_CURRENT
+      },
+      function(tab) {
+        chrome.tabs.sendMessage(tab[0].id, {
+            method: "getSelection"
+          },
+          function(response) {
+            console.log(response.data);
+            let text = response.data;
+            // console.log(text);
+            let msg = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(msg);
+          });
+      });
+  }
 
 
+ let elements = document.getElementById("Read");
+  elements.addEventListener("click", testClick);
+
+
+})();
